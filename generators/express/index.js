@@ -58,7 +58,7 @@ var staticHandler = function(self)  {
   self.prompt(path,function(res) {
     try{ 
       var file = self.readFileAsString('./setting/index.js');
-      file  = file.replace('//end setting', "\t.use(express.static(__dirname+'"+res.path+"'))//statics resources" + "\n //end setting")
+      file  = file.replace('//end setting', "\t.use(express.static(__dirname+'/.."+res.path+"'))//statics resources" + "\n //end setting")
       self.write('./setting/index.js', file ); 
     } catch(err) {
       var file = self.readFileAsString('./app.js');
@@ -82,11 +82,24 @@ var engineHandler = function(self) {
       var file = self.readFileAsString('./app.js');
       self.write('./app.js', file.replace('//end setting',"\t.set('view engine','"+res.engine+"' )//engine view"+"\n //end setting") ); 
     }
-  })  
+  })  }//end engine handler 
 
-}//end engine handler 
-
-
+var paramHandler = function(self) {
+  var query = [{
+    name:'key',
+    message:'Write the param',
+    type:'input'
+  }]
+  self.prompt(query,function(res) {
+    try{ 
+      var file = self.readFileAsString('./setting/index.js');
+      file  = file.replace('//end setting', "\t\t.param('"+res.key+"', (req,res,next,"+res.key+")=> { req."+res.key+" = '"+res.key+"'; next(); })//"+res.key+" param" + "\n //end setting")
+      self.write('./setting/index.js', file ); 
+    } catch(err) {
+      var file = self.readFileAsString('./app.js');
+      self.write('./app.js', file.replace('//end setting', "\t.param('"+res.key+"', (req,res,next,"+res.key+")=> { req."+res.key+" = '"+res.key+"'; next(); })//"+res.key+" param" + "\n //end setting") ); 
+    }
+  })}//end param handler 
 
 
 
@@ -107,7 +120,8 @@ module.exports = yeoman.generators.Base.extend({
       choices:[
         'views',
         'engine',
-        'static'
+        'static',
+        'param'
       ]
     }]//end query 
 
@@ -122,7 +136,9 @@ module.exports = yeoman.generators.Base.extend({
       } else if(options === 'static'){
         console.log('Setting the static folder');
         staticHandler(self);
-      }        
+      } else if(options === 'param') {
+        paramHandler(self); 
+      } 
     })
 
   }, 
