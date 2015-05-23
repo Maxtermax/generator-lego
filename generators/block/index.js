@@ -28,7 +28,7 @@ module.exports = yeoman.generators.Base.extend({
       self.write('./app.js', file );
       if(prompt.set) {
         //set the setting folder option
-        self.write('./app.js', file.replace("//begin setting","//begin setting \n require('./setting/index.js')(app)") );       
+        self.write('./app.js', file.replace("//begin setting","//begin setting \n require('./setting')(express,app)") );       
         mkdirp('./setting',function(err) {
           if(err) return console.log(err,"err");
           self.fs.copy(

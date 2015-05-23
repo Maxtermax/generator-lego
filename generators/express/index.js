@@ -30,7 +30,6 @@ var viewHandler = function(self) {
     }
     mkdirp('./views',function(err) {
       if(err) return self.log(err,'Ooops');
-     // self.write('./views/index.html', self.readFileAsString( self.templatePath("_index.html") ) ); 
       self.fs.copy(
         self.templatePath('_index.html'),
         self.destinationPath('./views/index.html')
@@ -38,11 +37,11 @@ var viewHandler = function(self) {
       console.log('Creating the view folder');
       try{ 
         var file = self.readFileAsString('./setting/index.js');
-        file  = file.replace('//end setting',".set('views',__dirname+'/views')"+"\n //end setting")
+        file  = file.replace('//end setting',".set('views',__dirname+'/../views')"+"\n //end setting")
         self.write('./setting/index.js', file ); 
       } catch(err) {
         var file = self.readFileAsString('./app.js');
-        self.write('./app.js', file.replace('//end setting',"\t.set('views',__dirname+'/views')"+"\n //end setting") ); 
+        self.write('./app.js', file.replace('//end setting',"\t.set('views',__dirname+'/../views')"+"\n //end setting") ); 
       }
     })
    }//end default path 
@@ -65,9 +64,28 @@ var staticHandler = function(self)  {
       var file = self.readFileAsString('./app.js');
       self.write('./app.js', file.replace('//end setting',"\t.use(express.static(__dirname+'"+res.path+"'))//statics resources"+"\n //end setting") ); 
     }
-  }) 
+  }) }//end static handler 
 
-}//end static handler 
+var engineHandler = function(self) {
+ var query = [{
+    name:"engine",
+    message:"Write the engine view",
+    type:"input"
+  }]
+
+  self.prompt(query,function(res) {
+    try{ 
+      var file = self.readFileAsString('./setting/index.js');
+      file  = file.replace('//end setting', "\t\t.set('view engine','"+res.engine+"' )//engine view" + "\n //end setting")
+      self.write('./setting/index.js', file ); 
+    } catch(err) {
+      var file = self.readFileAsString('./app.js');
+      self.write('./app.js', file.replace('//end setting',"\t.set('view engine','"+res.engine+"' )//engine view"+"\n //end setting") ); 
+    }
+  })  
+
+}//end engine handler 
+
 
 
 
@@ -97,12 +115,13 @@ module.exports = yeoman.generators.Base.extend({
       var options = res.option;
       if(options === 'views'){
         console.log('Setting the views')
-        viewHandler(self)
+        viewHandler(self);
       } else if(options === 'engine') {
         console.log('Setting the engine resources')
+        engineHandler(self);
       } else if(options === 'static'){
-        console.log('Setting the static folder')
-        staticHandler(self) 
+        console.log('Setting the static folder');
+        staticHandler(self);
       }        
     })
 
