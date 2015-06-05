@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var _ = require('underscore');
+var mkdirp = require('mkdirp');
 
 module.exports = yeoman.generators.Base.extend({
 
@@ -13,18 +14,11 @@ module.exports = yeoman.generators.Base.extend({
       'Welcome to the excellent ' + chalk.red('Lego') + ' generator!'
     ));
 
-    var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
-    },
-    {
+    var prompts = [{   
       type:'confirm',
       name:'express',
       message:'Do you like start with express.js'
-    }
-    ];
+    }];
 
 
     this.prompt(prompts,function (props) {
@@ -38,6 +32,9 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
+      mkdirp('./app',function(err) {
+        if(err)  console.log('Error creating the application folder please create for you self in the current path')
+      }) 
       this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath('package.json')

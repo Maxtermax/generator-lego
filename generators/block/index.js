@@ -28,15 +28,15 @@ module.exports = yeoman.generators.Base.extend({
       self.write('./app.js', file );
       if(prompt.set) {
         //set the setting folder option
-        self.write('./app.js', file.replace("//begin setting","//begin setting \n require('./setting')(express,app)") );       
+        self.write('./app.js', file.replace("//begin setting","//begin setting \n require('./setting')(express,app)") );        
         mkdirp('./setting',function(err) {
           if(err) return console.log(err,"err");
           self.fs.copy(
             self.templatePath('_set_in_folder.js'),
             self.destinationPath('/setting/index.js')
-            )
+          )
         });
-          
+                  
       } else {
         //set the setting directly on the main file  
         var set = self.readFileAsString(self.templatePath('_set.js'));
