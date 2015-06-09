@@ -1,0 +1,11 @@
+{
+  "name": "package",
+  "version": "0.0.0",
+  "dependencies": {
+    "cors": "^2.7.1",
+    "method-override": "^1.0.2",
+    "morgan": "^1.5.3",
+    "multer": "^0.1.8",
+    "underscore": "^1.8.3"
+  }
+}

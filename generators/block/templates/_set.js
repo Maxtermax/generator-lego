@@ -8,7 +8,7 @@
 */
 
 app
-	.use(require('cors')())//middlewares acess among server's 
-	.use(require('morgan')( app.env ))//middleware debug
-	.use(require('method-override')())//middleware put and delete request
-	.use(require('multer')())//middleware parse files and post request 
+	.use(require('cors')())//middlewares acess among server's https://www.npmjs.com/package/cors 
+	.use(require('morgan')( app.get('status log') ))//middleware debug https://www.npmjs.com/package/morgan
+	.use(require('method-override')())//middleware put and delete request https://www.npmjs.com/package/method-override
+	.use(require('multer')())//middleware parse files and post request https://www.npmjs.com/package/multer

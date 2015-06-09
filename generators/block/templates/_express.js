@@ -3,10 +3,15 @@
 const express = require('express')
 ,		app = express()
 ,		server = http.createServer(app)
-,		port = process.env.PORT ? process.env.PORT : 3000;
-app.env = (port === 3000) ?'dev':'combined';
+
+//begin set port,log
+app
+	.set('port', process.env.PORT || 3000)
+	.set('status log', app.get('port') === 3000 ? 'dev':'combined' ) 
+//end set port log
+
 
 //begin setting
 //end setting
 
-server.listen(port,() => console.log('Listen on port',port) );
+server.listen(app.get("port"),() => console.log('Listen on port',app.get("port")) );
