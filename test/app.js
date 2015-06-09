@@ -24,23 +24,8 @@ app
  require('./setting/express')(express,app)
 //end setting
 
-//begin route /saluda
- var sal = new require('./routes/saluda')({app:app})
- app
-	.route('/saluda')
-	.get(sal.saluda)
-	
-//end route /saluda 
 
 
- 
-
-app
-	.route('/few')
-	.get(function(req,res) { 
- 		res.send('welcome to: /few :)')
-	})
-//end route /few 
 
 server.listen(app.get("port"),() => console.log('Listen on port',app.get("port")) );
 

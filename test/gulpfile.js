@@ -1,7 +1,7 @@
 var gulp = require("gulp")
 ,		babel = require('gulp-babel')
 ,		exec = require('child_process').exec
-,   list = ["./app.js",'./routes/index.js'];
+,   list = ["./app.js",'./routes','./setting'];
 
 var run = function() {
 	exec('node ./e/app.js',function(err,res) {
