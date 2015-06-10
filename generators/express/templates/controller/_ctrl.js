@@ -1,12 +1,12 @@
-module.exports = class Route_<%= title %> {
-	construtor() {
+module.exports = class ROUTE_<%= title %> {
+	constructor() {
 
-	}
-	<%= name %>(req,res) {
+	}//end constructor
+	<%= method %>_<%= name %>(req,res) {
 		res.send('Allo!!')
 	}//end <%= name %>
 
-}//end class Route<%= name %>
+}//end class Route_<%= name %>
 
 
 

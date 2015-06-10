@@ -126,11 +126,13 @@ var createFolderRoot = function(self,name) {
   mkdirp(path,function() {
     self.fs.copyTpl(
       self.templatePath('/controller/_ctrl.js'),
-      self.destinationPath(path+"/"+name+".js"),
-      {title:name.toLocaleUpperCase(),name:name.capitalize()}
-    )
-  })//end create 
+      self.destinationPath(path+"/"+name+".js"),{
+        title:name.toLocaleUpperCase(),
+        name:name.capitalize(),
+        method:self.option
+      })
 
+  })//end create 
   
 }//end createFolderRoot
 
@@ -216,9 +218,16 @@ module.exports = yeoman.generators.Base.extend({
         fs.exists("./setting/express/routes/index.js",function(exists){
           if(exists) {
             var name = self.path.replace("/","").replace(/\//g,"_").replace(":","")    
-            createFolderRoot(self,name)
             var file = self.readFileAsString("./setting/express/routes/index.js");
-            self.write("./setting/express/routes/index.js", file.replace("//Routes","//Routes\n\t\t\t"+name+":require('"+"./setting/express/routes/"+name+"/"+name+".js')(app),//route "+name) )   
+            if( file.search(name) != -1 ) {
+              //found method of just update at the class with the method
+              var update = self.readFileAsString("./setting/express/routes/"+name+"/"+name+".js");
+              self.write( "./setting/express/routes/"+name+"/"+name+".js", update.replace("//end constructor","//end constructor\n\t"+self.option+"_"+name.capitalize()+"(req,res){\n"+"\t\tres.send('Allo!!')\n\t}//end "+name+"\n") ) 
+            } else {
+              createFolderRoot(self,name)
+              self.write("./setting/express/routes/index.js", file.replace("}//end routes","\n\t//begin route "+name+"\n\tvar "+name+" = require('./"+name+"/"+name+".js')\n\tvar instance_"+name+" = new "+name+"({app:app})\n\tapp\n\t\t.route('"+self.path+"')\n\t\t."+self.option.toLowerCase()+"(instance_"+name+"['"+self.option+"_"+name.capitalize()+"'])\n\t//end route "+name+"\n\n}//end routes" ) )   
+            }             
+
             return;
           }
           self.prompt(query,function(res) {
@@ -226,9 +235,13 @@ module.exports = yeoman.generators.Base.extend({
               var name = self.path.replace("/","").replace(/\//g,"_").replace(":","")
               self.fs.copyTpl(
                 self.templatePath('_index.js'),
-                self.destinationPath("./setting/express/routes/index.js"),
-                {name:name,path:"./setting/express/routes/"+name}
-              )  
+                self.destinationPath("./setting/express/routes/index.js"),{
+                  name:name,
+                  path:self.path,
+                  method:self.option.toLowerCase(),
+                  methodMay:self.option.toUpperCase(),
+                  nameCap:name.capitalize()
+                })  
               createFolderRoot(self,name)
               return; 
             } 
