@@ -2,11 +2,11 @@ module.exports = class ROUTE_<%= title %> {
 	constructor() {
 
 	}//end constructor
-	<%= method %>_<%= name %>(req,res) {
+	<%= method %>_<%= nameCap %>(req,res) {
 		res.send('Allo!!')
-	}//end <%= name %>
+	}//end <%= name %> <%= method %>
 
-}//end class Route_<%= name %>
+}//end class Route_<%= name %> 
 
 
 

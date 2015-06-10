@@ -4,7 +4,7 @@ var roots = function (app) {
 	var instance_<%= name %> = new <%= name %>({app:app})
 	app
 		.route('<%= path %>')
-		.<%= method %>(instance_<%= name %>['<%= methodMay %>_<%= nameCap %>'] ) 
+		.<%= method %>(instance_<%= name %>['<%= methodMay %>_<%= nameCap %>']) 
 	//end route <%= name %>		
 
 }//end routes 
