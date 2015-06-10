@@ -1,25 +1,34 @@
 var gulp = require("gulp")
 ,		babel = require('gulp-babel')
 ,		exec = require('child_process').exec
-,   list = ["./app.js",'./routes','./setting'];
+,		fs = require('fs')
+,   list = ["./app.js","./setting/**/*"];
 
 var run = function() {
-	exec('node ./e/app.js',function(err,res) {
-		if(err) return console.log(err,"err")
-		console.log(res)
-	})
 }//end run
 
 var copy = function () {
 	this
-		.src(list)
+		.src("./app.js")
 		.pipe(babel())
-		.pipe( gulp.dest("./e") )
+		.pipe( gulp.dest("./build") )
+
+	this
+		.src("./setting/**/*")
+		.pipe(babel())
+		.pipe( gulp.dest("./build/setting") )
+	/*
+	exec('node ./build/app.js',function(err,res) {
+		if(err) return console.log(err,"err")
+		console.log(res)
+	})
+	*/
+
 }//end copy
 
 
 var watch = function() {
-	this.watch(list,['copy','run'])
+	this.watch("./app.js",['copy','run'])
 }//end watch 
 
 

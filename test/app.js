@@ -19,12 +19,9 @@ app
 	.set('status log', app.get('port') === 3000 ? 'dev':'combined' ) 
 //end set port log
 
-
 //begin setting 
- require('./setting/express')(express,app)
+ require('./setting/express/routes')(app)
 //end setting
-
-
 
 
 server.listen(app.get("port"),() => console.log('Listen on port',app.get("port")) );
