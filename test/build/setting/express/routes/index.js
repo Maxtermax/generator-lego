@@ -29,7 +29,19 @@ var roots = function roots(app) {
 	var ng = require('./ng/ng.js');
 	var instance_ng = new ng({ app: app });
 	app.route('/ng').get(instance_ng['GET_Ng']);
+	//end route ng
+
+	//begin route esc
+	var esc = require('./esc/esc.js');
+	var instance_esc = new esc({ app: app });
+	app.route('/esc').get(instance_esc['GET_Esc']);
+	//end route esc
+
+	//begin route ccc
+	var ccc = require('./ccc/ccc.js');
+	var instance_ccc = new ccc({ app: app });
+	app.route('/ccc').get(instance_ccc['GET_Ccc']);
 }; //end routes
 
 module.exports = roots;
-//end route ng
+//end route ccc

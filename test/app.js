@@ -22,7 +22,7 @@ app
 //begin setting 
  require('./setting/express/routes')(app)
 //end setting
-
+console.log('efw')
 
 server.listen(app.get("port"),() => console.log('Listen on port',app.get("port")) );
 

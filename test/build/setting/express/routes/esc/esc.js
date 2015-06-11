@@ -5,18 +5,18 @@ var _createClass = (function () { function defineProperties(target, props) { for
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 module.exports = (function () {
-	function ROUTE_TIME() {
-		_classCallCheck(this, ROUTE_TIME);
+	function ROUTE_ESC() {
+		_classCallCheck(this, ROUTE_ESC);
 	}
 
-	_createClass(ROUTE_TIME, [{
-		key: 'GET_Time',
+	_createClass(ROUTE_ESC, [{
+		key: 'GET_Esc',
 		//end constructor
-		value: function GET_Time(req, res) {
-			res.send('Allo!!');
-		} //end time GET
+		value: function GET_Esc(req, res) {
+			res.send('Allo!! NO SE fre');
+		} //end esc GET
 
 	}]);
 
-	return ROUTE_TIME;
-})(); //end class Route_time
+	return ROUTE_ESC;
+})(); //end class Route_esc

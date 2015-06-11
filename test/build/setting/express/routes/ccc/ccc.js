@@ -5,18 +5,18 @@ var _createClass = (function () { function defineProperties(target, props) { for
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 module.exports = (function () {
-	function ROUTE_REAL() {
-		_classCallCheck(this, ROUTE_REAL);
+	function ROUTE_CCC() {
+		_classCallCheck(this, ROUTE_CCC);
 	}
 
-	_createClass(ROUTE_REAL, [{
-		key: 'GET_Real',
+	_createClass(ROUTE_CCC, [{
+		key: 'GET_Ccc',
 		//end constructor
-		value: function GET_Real(req, res) {
-			res.send('Allo!! real');
-		} //end real GET
+		value: function GET_Ccc(req, res) {
+			res.send('Cagar fewfew efr');
+		} //end ccc GET
 
 	}]);
 
-	return ROUTE_REAL;
-})(); //end class Route_real
+	return ROUTE_CCC;
+})(); //end class Route_ccc

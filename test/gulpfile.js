@@ -4,8 +4,16 @@ var gulp = require("gulp")
 ,		fs = require('fs')
 ,   list = ["./app.js","./setting/**/*"];
 
+
 var run = function() {
+	console.log('RUNNING')
+	exec('nodemon ./build/app.js',function() {
+		console.log('ewgew')
+	})
+	
 }//end run
+
+	
 
 var copy = function () {
 	this
@@ -18,17 +26,15 @@ var copy = function () {
 		.pipe(babel())
 		.pipe( gulp.dest("./build/setting") )
 	/*
-	exec('node ./build/app.js',function(err,res) {
-		if(err) return console.log(err,"err")
-		console.log(res)
-	})
 	*/
 
 }//end copy
 
 
 var watch = function() {
-	this.watch("./app.js",['copy','run'])
+	console.log('WATCH')
+	this
+		.watch(list,['copy','run'])
 }//end watch 
 
 
@@ -36,7 +42,7 @@ gulp
 	.task('copy',copy)
 	.task('run',run)
 	.task('watch',watch)
-	.task('default', ['copy','run','watch'])
+	.task('default', ['copy','watch','run'])
 
 
 
