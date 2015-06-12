@@ -7,8 +7,12 @@ var gulp = require("gulp")
 
 var run = function() {
 	console.log('RUNNING')
-	exec('nodemon ./build/app.js',function() {
+	exec('nodemon ./build/app.js',function(err,stdout,stdin) {
+		if(err) return console.log(err,"err")
+		console.log(stdout,"stdout")	
+		console.log(stdin,"stdin")
 		console.log('ewgew')
+
 	})
 	
 }//end run

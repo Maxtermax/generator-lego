@@ -113,11 +113,11 @@ var paramHandler = function(self) {
   self.prompt(query,function(res) {
     try{ 
       var file = self.readFileAsString('./setting/express/index.js');
-      file  = file.replace('//end setting', "\t\t.param('"+res.key+"', (req,res,next,"+res.key+")=> { req."+res.key+" = '"+res.key+"'; next(); })//"+res.key+" param" + "\n //end setting")
+      file  = file.replace('//end setting', "\t\t.param('"+res.key+"', (req,res,next,"+res.key+")=> { req."+res.key+" = "+res.key+"; next(); })//"+res.key+" param" + "\n //end setting")
       self.write('./setting/express/index.js', file ); 
     } catch(err) {
       var file = self.readFileAsString('./app.js');
-      self.write('./app.js', file.replace('//end setting', "\t.param('"+res.key+"', (req,res,next,"+res.key+")=> { req."+res.key+" = '"+res.key+"'; next(); })//"+res.key+" param" + "\n //end setting") ); 
+      self.write('./app.js', file.replace('//end setting', "\t.param('"+res.key+"', (req,res,next,"+res.key+")=> { req."+res.key+" = "+res.key+"; next(); })//"+res.key+" param" + "\n //end setting") ); 
     }
   })}//end param handler 
 
@@ -133,8 +133,7 @@ var createFolderRoot = function(self,name) {
         method:self.option
       })
 
-  })//end create 
-  
+  })//end create  
 }//end createFolderRoot
 
 
@@ -218,8 +217,17 @@ module.exports = yeoman.generators.Base.extend({
 
         fs.exists("./setting/express/routes/index.js",function(exists){
           if(exists) {
-            var name = self.path.replace("/","").replace(/\//g,"_").replace(":","")    
+            // /a/b
+            var name = self.path
+              .replace("/","")
+              .replace(/:/g,"")
+              .replace(/\//g,"_");
             var file = self.readFileAsString("./setting/express/routes/index.js");
+            var app = self.readFileAsString("./app.js");
+            console.log( app.search('//end route') === -1)
+            if(app.search( '//end routes') === -1 ) {
+              self.write( "./app.js", app.replace("//end setting","//end setting\n\n//begin routes\nrequire('./setting/express/routes')(app)\n//end routes") )
+            }      
             if( file.search(name) != -1 ) {
               //found method of just update at the class with the method
               var update = self.readFileAsString("./setting/express/routes/"+name+"/"+name+".js");
@@ -231,13 +239,14 @@ module.exports = yeoman.generators.Base.extend({
             } else {
               createFolderRoot(self,name)
               self.write("./setting/express/routes/index.js", file.replace("}//end routes","\n\t//begin route "+name+"\n\tvar "+name+" = require('./"+name+"/"+name+".js')\n\tvar instance_"+name+" = new "+name+"({app:app})\n\tapp\n\t\t.route('"+self.path+"')\n\t\t."+self.option.toLowerCase()+"(instance_"+name+"['"+self.option+"_"+name.capitalize()+"'])\n\t//end route "+name+"\n\n}//end routes" ) )   
+              
             }             
 
             return;
           }
+          var name = self.path.replace("/","").replace(/\//g,"_").replace(":","")
           self.prompt(query,function(res) {
             if(res.root_dir) {
-              var name = self.path.replace("/","").replace(/\//g,"_").replace(":","")
               self.fs.copyTpl(
                 self.templatePath('_index.js'),
                 self.destinationPath("./setting/express/routes/index.js"),{
@@ -248,11 +257,26 @@ module.exports = yeoman.generators.Base.extend({
                   nameCap:name.capitalize()
                 })  
               createFolderRoot(self,name)
-              return; 
-            } 
-            var file = self.readFileAsString('./app.js');
-            file  = file.replace('//end setting', "//end setting\n\n//begin route "+self.path+"\napp\n\t.route('"+self.path+"')\n\t."+ self.option.toLowerCase()+"(function(req,res) { \n \t\tres.send('welcome to: "+self.path+" :)')\n\t})\n//end route "+self.path+" ")
-            self.write('./app.js', file )            
+            } else {
+              var file = self.readFileAsString('./app.js');
+              if(file.search(self.path) != -1) {
+                file  = file.replace('//end route '+self.path,"\t."+ self.option.toLowerCase() +"(function(req,res){\n\t\tres.send('Allo!!')\n\t})\n//end route "+self.path)
+                self.write('./app.js', file )            
+              } else {
+                file = file.replace('//end setting', "//end setting\n\n//begin route "+self.path+"\napp\n\t.route('"+self.path+"')\n\t."+ self.option.toLowerCase()+"(function(req,res) { \n \t\tres.send('welcome to: "+self.path+" :)')\n\t})\n//end route "+self.path+" ")
+                self.write('./app.js', file )            
+              }               
+            }
+              
+
+
+
+
+
+
+
+
+              
           })                   
 
         })//end exist folder

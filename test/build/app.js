@@ -20,9 +20,12 @@ app.set('port', process.env.PORT || 3000).set('status log', app.get('port') === 
 //end set port log
 
 //begin setting
-require('./setting/express/routes')(app);
+require('./setting/express')(express, app);
 //end setting
-console.log('efw');
+
+//begin routes
+require('./setting/express/routes')(app);
+//end routes
 
 server.listen(app.get('port'), function () {
 	return console.log('Listen on port', app.get('port'));
