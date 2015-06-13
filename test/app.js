@@ -28,7 +28,6 @@ app
 require('./setting/express/routes')(app)
 //end routes
 
-
 server.listen(app.get("port"),() => console.log('Listen on port',app.get("port")) );
 
 //end express

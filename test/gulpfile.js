@@ -1,19 +1,46 @@
 var gulp = require("gulp")
 ,		babel = require('gulp-babel')
-,		exec = require('child_process').exec
+,		spawn = require('child_process').exec
 ,		fs = require('fs')
 ,   list = ["./app.js","./setting/**/*"];
 
 
 var run = function() {
 	console.log('RUNNING')
-	exec('nodemon ./build/app.js',function(err,stdout,stdin) {
+	var p = spawn('nodemon ./build/app.js')
+
+	p.stdout.on('data', function (data) {
+	  console.log('stdout: ' + data);
+	});
+
+	p.stderr.on('data', function (data) {
+	 // console.log('stderr: ' + data);
+	});
+
+	p.on('exit', function (code) {
+	  console.log('child process exited with code ' + code);
+	});
+	
+
+	/*
+	function(err,stdout,stdin) {
 		if(err) return console.log(err,"err")
 		console.log(stdout,"stdout")	
 		console.log(stdin,"stdin")
 		console.log('ewgew')
 
 	})
+	.on("data",function(data) {
+		console.log(data,"data")
+	})
+	.on("end",function() {
+		console.log('END')
+	})
+	.on("close",function() {
+		console.log('Close')
+	})
+	*/
+
 	
 }//end run
 

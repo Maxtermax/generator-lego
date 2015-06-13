@@ -1,18 +1,23 @@
 'use strict';
 
 var roots = function roots(app) {
+	//begin route login		
+	var login = require('./login/login.js');
+	var instance_login = new login({ app: app });
+	app.route('/login').get(instance_login['GET_Login']);
+	//end route login		
 
-	//begin route x_y
-	var x_y = require('./x_y/x_y.js');
-	var instance_x_y = new x_y({ app: app });
-	app.route('/:x/:y').get(instance_x_y['GET_X_y']);
-	//end route x_y
+	//begin route nuevo
+	var nuevo = require('./nuevo/nuevo.js');
+	var instance_nuevo = new nuevo({ app: app });
+	app.route('/nuevo').get(instance_nuevo['GET_Nuevo']);
+	//end route nuevo
 
-	//begin route init_end
-	var init_end = require('./init_end/init_end.js');
-	var instance_init_end = new init_end({ app: app });
-	app.route('/test/:init/:end').get(instance_init_end['GET_Init_end']);
+	//begin route libre
+	var libre = require('./libre/libre.js');
+	var instance_libre = new libre({ app: app });
+	app.route('/libre').get(instance_libre['GET_Libre']);
 }; //end routes
 
 module.exports = roots;
-//end route init_end
+//end route libre
