@@ -7,24 +7,3 @@ module.exports = class ROUTE_<%= title %> {
 	}//end <%= name %> <%= method %>
 
 }//end class Route_<%= name %> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
