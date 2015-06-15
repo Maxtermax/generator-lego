@@ -17,6 +17,6 @@ module.exports = function (express, app) {
 	.use(require('method-override')()) //middleware put and delete request https://www.npmjs.com/package/method-override
 	.use(require('multer')()) //middleware parse files and post request https://www.npmjs.com/package/multer
 
-	.use('/hola', auth.jwt, auth.verifyToken).use('/login', auth.jwt, auth.verifyToken).use('/nuevas', auth.jwt, auth.verifyToken).use('/money', auth.jwt, auth.verifyToken);
+	.use('/admin/:name', auth.jwt, auth.verifyToken);
 };
 //end setting

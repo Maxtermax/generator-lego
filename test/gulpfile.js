@@ -21,27 +21,6 @@ var run = function() {
 	  console.log('child process exited with code ' + code);
 	});
 	
-
-	/*
-	function(err,stdout,stdin) {
-		if(err) return console.log(err,"err")
-		console.log(stdout,"stdout")	
-		console.log(stdin,"stdin")
-		console.log('ewgew')
-
-	})
-	.on("data",function(data) {
-		console.log(data,"data")
-	})
-	.on("end",function() {
-		console.log('END')
-	})
-	.on("close",function() {
-		console.log('Close')
-	})
-	*/
-
-	
 }//end run
 
 	
@@ -65,7 +44,7 @@ var copy = function () {
 var watch = function() {
 	console.log('WATCH')
 	this
-		.watch(list,['copy','run'])
+		.watch(list,['copy'])
 }//end watch 
 
 

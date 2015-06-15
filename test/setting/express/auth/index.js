@@ -25,7 +25,7 @@ module.exports = class Auth {
       the token authorization in the header of request please see
       <a href="https://github.com/auth0/node-jsonwebtoken" target="_blank" >Jwt</a> 
    `).status(err.status)
-
-	}//end verify token
+	
+	}//end veryfy token
 
 }//end class auth 

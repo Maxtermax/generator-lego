@@ -1,8 +1,8 @@
 "use strict";
 
-const express = require('express')
-,		app = express()
-,		server = http.createServer(app)
+const express = require('express')//express
+,		app = express()//call express like function 
+,		server = http.createServer(app)//server http 
 
 //begin set port,log
 app
