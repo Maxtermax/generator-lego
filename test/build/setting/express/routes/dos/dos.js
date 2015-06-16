@@ -6,23 +6,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 module.exports = function (app) {
 	return (function () {
-		function ROUTE_LOGIN() {
-			_classCallCheck(this, ROUTE_LOGIN);
+		function ROUTE_DOS() {
+			_classCallCheck(this, ROUTE_DOS);
 		}
 
-		_createClass(ROUTE_LOGIN, [{
-			key: 'GET_Login',
-			value: function GET_Login(req, res) {
-				var db = app.get('db');
-				db.find({}, function (err, docs) {
-					if (err) return res.send(err);
-					res.send(docs);
-				});
-			} //end login GET
+		_createClass(ROUTE_DOS, [{
+			key: 'GET_Dos',
+			value: function GET_Dos(req, res) {
+				res.send('Allo!!');
+			} //end dos GET
 
 		}]);
 
-		return ROUTE_LOGIN;
+		return ROUTE_DOS;
 	})();
-} //en e
-; //end class Route_login
+} //end exports 	
+; //end class Route_dos

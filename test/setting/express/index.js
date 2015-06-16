@@ -9,8 +9,6 @@
 */
 
 module.exports = function (express,app) {
-	var Auth = require('./auth')//auth handler
-	var auth = new Auth(app)//instance auth class
 	//begin setting
 	app
 		.use(require('cors')())//middlewares acess among server's https://www.npmjs.com/package/cors 
@@ -18,6 +16,5 @@ module.exports = function (express,app) {
 		.use(require('method-override')())//middleware put and delete request https://www.npmjs.com/package/method-override
 		.use(require('multer')())//middleware parse files and post request https://www.npmjs.com/package/multer
 
-		.use( '/admin/:name',auth.jwt,auth.verifyToken )
 	//end setting
 }

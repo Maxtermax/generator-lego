@@ -1,7 +1,7 @@
 var roots = function (app) {
 	//begin route <%= name %>		
-	var <%= name %> = require('./<%= name %>/<%= name %>.js')
-	var instance_<%= name %> = new <%= name %>({app:app})
+	var <%= name %> = require('./<%= name %>/<%= name %>.js')(app)
+	var instance_<%= name %> = new <%= name %>()
 	app
 		.route('<%= path %>')
 		.<%= method %>(instance_<%= name %>['<%= methodMay %>_<%= nameCap %>']) 

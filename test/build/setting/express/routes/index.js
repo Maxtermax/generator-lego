@@ -1,17 +1,17 @@
 'use strict';
 
 var roots = function roots(app) {
-	//begin route login		
-	var login = require('./login/login.js');
-	var instance_login = new login({ app: app });
-	app.route('/login').get(instance_login['GET_Login']);
-	//end route login		
+	//begin route test		
+	var test = require('./test/test.js')(app);
+	var instance_test = new test();
+	app.route('/test').get(instance_test['GET_Test']);
+	//end route test		
 
-	//begin route admin_name
-	var admin_name = require('./admin_name/admin_name.js');
-	var instance_admin_name = new admin_name({ app: app });
-	app.route('/admin/:name').get(instance_admin_name['GET_Admin_name']);
+	//begin route dos
+	var dos = require('./dos/dos.js')(app);
+	var instance_dos = new dos();
+	app.route('/dos').get(instance_dos['GET_Dos']);
 }; //end routes
 
 module.exports = roots;
-//end route admin_name
+//end route dos

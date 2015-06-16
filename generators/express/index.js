@@ -261,8 +261,8 @@ module.exports = yeoman.generators.Base.extend({
                   }) 
 
                 } else {
-                  console.log('ENTROO')
                   /*
+                  console.log('ENTROO')
                   var app = self.readFileAsString('./app.js')
                   self.write( "./app.js", app.replace( "//begin setting","DDDDDDDDDD\n//begin setting"))
                   */
@@ -300,7 +300,7 @@ module.exports = yeoman.generators.Base.extend({
 
               } else {
                 createFolderRoot(self,name)
-                self.write("./setting/express/routes/index.js", file.replace("}//end routes","\n\t//begin route "+name+"\n\tvar "+name+" = require('./"+name+"/"+name+".js')\n\tvar instance_"+name+" = new "+name+"({app:app})\n\tapp\n\t\t.route('"+self.path+"')\n\t\t."+self.option.toLowerCase()+"(instance_"+name+"['"+self.option+"_"+name.capitalize()+"'])\n\t//end route "+name+"\n\n}//end routes" ) )   
+                self.write("./setting/express/routes/index.js", file.replace("}//end routes","\n\t//begin route "+name+"\n\tvar "+name+" = require('./"+name+"/"+name+".js')(app)\n\tvar instance_"+name+" = new "+name+"()\n\tapp\n\t\t.route('"+self.path+"')\n\t\t."+self.option.toLowerCase()+"(instance_"+name+"['"+self.option+"_"+name.capitalize()+"'])\n\t//end route "+name+"\n\n}//end routes" ) )   
                 
               }             
               return;

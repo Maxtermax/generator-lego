@@ -24,6 +24,10 @@ app
  require('./setting/express')(express,app)
 //end setting
 
+//begin model
+require('./setting/model')(app)
+//end model
+
 //begin routes
 require('./setting/express/routes')(app)
 //end routes

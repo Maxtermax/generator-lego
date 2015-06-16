@@ -1,9 +1,9 @@
-module.exports = class ROUTE_<%= title %> {
-	constructor() {
+module.exports = function(app) {
+	return	class ROUTE_<%= title %> {
+		<%= method %>_<%= nameCap %>(req,res) {
+			res.send('Allo!!')
+		}//end <%= name %> <%= method %>
 
-	}//end constructor
-	<%= method %>_<%= nameCap %>(req,res) {
-		res.send('Allo!!')
-	}//end <%= name %> <%= method %>
+	}//end class Route_<%= name %> 
 
-}//end class Route_<%= name %> 
+}//end exports 	

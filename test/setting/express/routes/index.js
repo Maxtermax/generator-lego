@@ -1,20 +1,20 @@
 var roots = function (app) {
-	//begin route login		
-	var login = require('./login/login.js')
-	var instance_login = new login({app:app})
+	//begin route test		
+	var test = require('./test/test.js')(app)
+	var instance_test = new test()
 	app
-		.route('/login')
-		.get(instance_login['GET_Login']) 
-	//end route login		
+		.route('/test')
+		.get(instance_test['GET_Test']) 
+	//end route test		
 
 
-	//begin route admin_name
-	var admin_name = require('./admin_name/admin_name.js')
-	var instance_admin_name = new admin_name({app:app})
+	//begin route dos
+	var dos = require('./dos/dos.js')(app)
+	var instance_dos = new dos()
 	app
-		.route('/admin/:name')
-		.get(instance_admin_name['GET_Admin_name'])
-	//end route admin_name
+		.route('/dos')
+		.get(instance_dos['GET_Dos'])
+	//end route dos
 
 }//end routes 
 

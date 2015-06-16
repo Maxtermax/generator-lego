@@ -6,24 +6,23 @@ var _ = require('underscore');
 var mkdirp = require('mkdirp');
 
 module.exports = yeoman.generators.Base.extend({
-
   prompting: function () {
     var done = this.async();
+
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the excellent ' + chalk.red('Lego') + ' generator!'
+      'Welcome to the priceless ' + chalk.red('N') + ' generator!'
     ));
 
-    var prompts = [{   
-      type:'confirm',
-      name:'express',
-      message:'Do you like start with express.js'
+    var prompts = [{
+      type: 'confirm',
+      name: 'someOption',
+      message: 'Would you like to enable this option?',
+      default: true
     }];
 
-
-    this.prompt(prompts,function (props) {
+    this.prompt(prompts, function (props) {
       this.props = props;
-      console.log(props)
       // To access props later use this.props.someOption;
 
       done();
