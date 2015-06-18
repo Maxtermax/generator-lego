@@ -73,8 +73,10 @@ var WriteInMain = function (self) {
       app 
         .replace("//server http","//server http\n,  mongoose = require('mongoose')//mongodb driver\n,    Schema = mongoose.Schema//db schemas")
         .replace("//end setting","//end setting\n\nlet  database = '"+res.database+"'\n,  dbuser = '"+res.dbuser+"'\n,  dbpassword = '"+ res.dbpassword +"'\n,  port = '"+ res.port +"'//uri variables") 
-        .replace("//uri variables","//end setting uri\n\napp.set('uri', app.get('status log') != 'dev' ? `mongodb://localhost/${database}` : `mongodb://${dbuser}:${dbpassword}@ds0${port}.mongolab.com:${port}/${database}`)//set uri")
-        .replace("//set uri","//set uri\nmongoose.connect( app.get('uri') ,(err)=> { if(err) return console.log(err); console.log('OK') })//open connection ")
+        .replace("//uri variables","//end setting uri\n\napp.set('uri', app.get('status log') === 'dev' ? `mongodb://localhost/${database}` : `mongodb://${dbuser}:${dbpassword}@ds0${port}.mongolab.com:${port}/${database}`)//set uri")
+        .replace("//set uri","//set uri\nmongoose.connect( app.get('uri') ,(err)=> { if(err) return console.log(err); console.log('OK') })//open connection")
+        .replace("//open connection","//open connection\n\n//ListSchemas\n\nvar Cat = new Schema({\n\tname:{type:String,required:true,unique:false},\n\tage:{type:Number,required:true,unique:false}//last field\n})//end Cat")
+        .replace("//enc Cat","//enc Cat\n\napp.set('model',mongoose.model('"+res.dbuser.toUpperCase()+"',Cat))//end model")
     )
 
   })
@@ -123,23 +125,19 @@ module.exports = yeoman.generators.Base.extend({
           var set = self.readFileAsString(self.templatePath('_set.js'));
           self.write('./app.js', file.replace("//begin setting","//begin setting \n"+set) );                 
         }
-
         var modules = [
           "morgan@^1.0.0",
           "multer@^0.1.0",
           "method-override@^1.0.0",
-          "cors@^2.5.2",
-          "underscore"
+          "cors@^2.5.2"
         ]
         self.npmInstall(modules, { 'save': true });
       })//end prompting callback 
-    }
-
+    } 
   },
   mongodb : function() {
     var self = this
     if(self.block === 'mongodb') {
-      console.log('MODEO')
       var query = [{
         type:'confirm',
         name:'pathFolder',
@@ -148,8 +146,13 @@ module.exports = yeoman.generators.Base.extend({
       self.prompt(query,function(res) {        
         if(res.pathFolder) return createFolder('./setting/model',self)
         WriteInMain(self)
-
+        var modules = [
+          "mongoose@^ 4.0.5"
+        ]
+        self.npmInstall(modules, { 'save': true });
       })      
+
+
     }
   }
 });

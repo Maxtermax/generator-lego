@@ -34,6 +34,11 @@ module.exports = yeoman.generators.Base.extend({
       mkdirp('./app',function(err) {
         if(err)  console.log('Error creating the application folder please create for you self in the current path')
       }) 
+
+      mkdirp('./build/setting',function(err) {
+        if(err)  console.log('Error creating build file please create for you self in the current path')
+      }) 
+
       this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath('package.json')
@@ -41,11 +46,12 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copy(
         this.templatePath('_app.js'),
         this.destinationPath('app.js')
-      );      
+      )      
       this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
-      );
+        this.templatePath('_gulpfile.js'),
+        this.destinationPath('gulpfile.js')
+      )
+
     },
 
     projectfiles: function () {
@@ -59,8 +65,7 @@ module.exports = yeoman.generators.Base.extend({
       );
     }
   },
-
   install: function () {
-  //  this.installDependencies();
+    this.installDependencies();
   }
 });

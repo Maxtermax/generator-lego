@@ -290,7 +290,7 @@ module.exports = yeoman.generators.Base.extend({
                 //found method of just update at the class with the method
                 try {
                   var update = self.readFileAsString("./setting/express/routes/"+name+"/"+name+".js");
-                  self.write( "./setting/express/routes/"+name+"/"+name+".js", update.replace("//end constructor","//end constructor\n\t"+self.option+"_"+name.capitalize()+"(req,res){\n"+"\t\tres.send('Allo!!')\n\t}//end "+name+" "+self.option+"\n") ) 
+                  self.write( "./setting/express/routes/"+name+"/"+name+".js", update.replace("//end constructor","//end constructor\n\n\t\t"+self.option+"_"+name.capitalize()+"(req,res){\n"+"\t\t\tres.send( 'Allo!! wellcome to "+ self.path +" for method "+ self.option +"')\n\t\t}//end "+name+" "+self.option+"\n") ) 
 
                 var rooter = self.readFileAsString("./setting/express/routes/index.js")
                 self.write("./setting/express/routes/index.js", file.replace("//end route "+name,"\t."+self.option.toLowerCase()+"(instance_"+name+"['"+self.option+"_"+name.capitalize()+"'])\n\t//end route "+name+"\n") )   
@@ -329,17 +329,23 @@ module.exports = yeoman.generators.Base.extend({
                 var app = self.readFileAsString('./app.js');
                 if(app.search(self.path) != -1) { 
                   self.write('./app.js',app.replace('//end route '+self.path,"\t."+ self.option.toLowerCase() +"(function(req,res){\n\t\tres.send('Allo!!')\n\t})\n//end route "+self.path))            
-                } else if(!res.auth_folder){
+                } else if(!res.auth_folder ){
                   if( app.search("//auth for "+self.path ) != -1 ) {
                     self.write('./app.js',app.replace('//end setting', "//end setting\n\n//begin route "+self.path+"\napp\n\t.route('"+self.path+"')\n\t."+ self.option.toLowerCase()+"(function(req,res) { \n \t\tres.send('welcome to: "+self.path+" :)')\n\t})\n//end route "+self.path+" "))            
-                  } else {
+                  } else if( self.auth && self.auth === 'Auth' ) {
                     var content = app.replace('//end setting', "//end setting\n\n//begin route "+self.path+"\napp\n\t.route('"+self.path+"')\n\t."+ self.option.toLowerCase()+"(function(req,res) { \n \t\tres.send('welcome to: "+self.path+" :)')\n\t})\n//end route "+self.path+" ")
                     if( content.search("//jwt") == -1 ) {
                       content = content.replace("const express = require('express')","const express = require('express')\n,   jwt = require('jsonwebtoken')//jwt\n,    expressJwt = require('express-jwt')")
-                    }
+                    } 
                     content = content.replace("//end setting","\t.use('"+self.path+"',expressJwt({secret:'Lolipop',exp:5}) ,(err,req,res,next)=> {\n\t\tif(err) return res.send(err).status(err.status)\n\t\tnext()\n\t})//auth for "+self.path+"\n//end setting")
                     self.write("./app.js",content)
-                  }                
+                  } else {
+                    var content = app.replace('//end setting', "//end setting\n\n//begin route "+self.path+"\napp\n\t.route('"+self.path+"')\n\t."+ self.option.toLowerCase()+"(function(req,res) { \n \t\tres.send('welcome to: "+self.path+" :)')\n\t})\n//end route "+self.path+" ")
+                    self.write("./app.js",content)
+                  }   
+
+
+
                 }                     
               }
             })                   
