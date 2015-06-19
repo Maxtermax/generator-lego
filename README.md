@@ -21,8 +21,10 @@ $ mkdir myProject && cd myProject && yo lego
 
 this will prepare the environment of development with this files:
 
-* app.js
+![tree](./images/init.png "Logo Title Text 1")
 
+### package.json
+![tree](./images/init-package.json.png "Logo Title Text 1")
 
 
 ### Blocks 
