@@ -32,12 +32,22 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function () {
       mkdirp('./app',function(err) {
-        if(err)  console.log('Error creating the application folder please create for you self in the current path')
+        if(err)  console.log('Error creating the application folder please create for you self in ./app')
       }) 
 
       mkdirp('./build/setting',function(err) {
-        if(err)  console.log('Error creating build file please create for you self in the current path')
+        if(err)  console.log('Error creating build file please create for you self in ./build/setting')
       }) 
+
+      mkdirp('./build/setting',function(err) {
+        if(err) return console.log('Error creating build file please create for you self in ./build/setting')
+      }) 
+      mkdirp('./build/setting/app',function(err) {
+        if(err)  console.log('Error creating build file please create for you self in ./build/setting/app')
+      }) 
+
+
+
 
       this.fs.copy(
         this.templatePath('_package.json'),

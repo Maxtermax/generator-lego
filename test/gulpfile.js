@@ -35,8 +35,11 @@ var copy = function () {
 		.src("./setting/**/*")
 		.pipe(babel())
 		.pipe( gulp.dest("./build/setting") )
-	/*
-	*/
+
+	this
+		.src("./app/**/")
+		.pipe( gulp.dest("./build/app") )
+
 
 }//end copy
 

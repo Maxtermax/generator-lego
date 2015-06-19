@@ -9,10 +9,10 @@ var newSchema = function (self,res,main) {
   })
   if(main) {
     var schema = self.readFileAsString("./app.js")
-    self.write("./app.js",schema.replace("//ListSchemas","//ListSchemas\nvar "+ self.attribute +" = new Schema({ \n\t"+res.attribute+":{type:"+res.type+",required:"+res.required+",unique:"+res.unique+"}//last field\n})//end "+self.attribute ) )    
+    self.write("./app.js",schema.replace("//begin ListSchemas","//begin ListSchemas\nvar "+ self.attribute +" = new Schema({ \n\t"+res.attribute+":{type:"+res.type+",required:"+res.required+",unique:"+res.unique+"}//last field\n})//end "+self.attribute ) )    
   } else {
     var schema = self.readFileAsString("./setting/model/schemas/index.js")
-    self.write("./setting/model/schemas/index.js",schema.replace("//ListSchemas","//ListSchemas\n\t\tvar "+ self.attribute +" = new Schema({ \n\t\t\t"+res.attribute+":{type:"+res.type+",required:"+res.required+",unique:"+res.unique+"}//last field\n\t\t})//end "+self.attribute ) )
+    self.write("./setting/model/schemas/index.js",schema.replace("//begin ListSchemas","//begin ListSchemas\n\t\tvar "+ self.attribute +" = new Schema({ \n\t\t\t"+res.attribute+":{type:"+res.type+",required:"+res.required+",unique:"+res.unique+"}//last field\n\t\t})//end "+self.attribute ) )
   }
 }//end newSchema
 
@@ -85,9 +85,9 @@ var newStaticMain = function(self,name,model) {
   if( app.search('//end statics method') != -1 ) {
     self.write( "./app.js", app.replace("//end statics method",self.schemaName+".statics."+name+" = function() {\n\t var model = this.model('"+model+"')\n\t//do statements\n}//end "+name+"\n//end statics method") )
   }else {
+    console.log('DDD')
     self.write( "./app.js", app.replace("//end "+self.schemaName,"//end "+self.schemaName+"\n\n//begin statics method\n"+self.schemaName+".statics."+name+" = function() {\n\t var model = this.model('"+model+"')\n\t//do statements\n}//end "+name+"\n//end statics method") )
-  }
-    
+  }  
 
 }//end newStaticMain
 
@@ -145,11 +145,12 @@ module.exports = yeoman.generators.Base.extend({
           desc: 'The subgenerator arvg'
         })
         var app = self.readFileAsString("./app.js")
-        if( app.search("//ListSchemas") === -1 ) return extendAttr(self,self.a,self.b)
+        if( app.search("//begin ListSchemas") === -1 ) return extendAttr(self,self.a,self.b)
        extendAttr(self,self.a,self.b,true)
 
       } else {
         if( self.arvg === 'statics' ){
+          console.log('STATICS')
           self.argument('methodName',{
             required: true,
             type: String
@@ -160,14 +161,14 @@ module.exports = yeoman.generators.Base.extend({
             type: String
           })
           var app = self.readFileAsString("./app.js")
-          if( app.search("//ListSchemas") === -1 ) return newStatic(self,self.methodName,self.model)//create new static method
+          if( app.search("//begin ListSchemas") === -1 ) return newStatic(self,self.methodName,self.model)//create new static method
            newStaticMain(self,self.methodName,self.model)
           
         } else {
           self.prompt(attr,function(res) {
             if(self.arvg === 'new') {
               var app = self.readFileAsString("./app.js")
-              if( app.search("//ListSchemas") === -1 ) return newSchema(self,res)
+              if( app.search("//begin ListSchemas") === -1 ) return newSchema(self,res)
               newSchema(self,res,true)
 
             } else if(self.arvg === 'add') {
@@ -176,7 +177,7 @@ module.exports = yeoman.generators.Base.extend({
                 type: String,
               })
               var app = self.readFileAsString("./app.js")
-              if( app.search("//ListSchemas") === -1 ) return addAttr(self,res,self.field)
+              if( app.search("//begin ListSchemas") === -1 ) return addAttr(self,res,self.field)
               addAttr(self,res,self.field,true)  
             } 
           })//end attr

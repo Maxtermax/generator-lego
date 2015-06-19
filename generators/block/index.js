@@ -71,12 +71,12 @@ var WriteInMain = function (self) {
   self.prompt(query,function(res) {
     self.write("./app.js",
       app 
-        .replace("//server http","//server http\n,  mongoose = require('mongoose')//mongodb driver\n,    Schema = mongoose.Schema//db schemas")
-        .replace("//end setting","//end setting\n\nlet  database = '"+res.database+"'\n,  dbuser = '"+res.dbuser+"'\n,  dbpassword = '"+ res.dbpassword +"'\n,  port = '"+ res.port +"'//uri variables") 
-        .replace("//uri variables","//end setting uri\n\napp.set('uri', app.get('status log') === 'dev' ? `mongodb://localhost/${database}` : `mongodb://${dbuser}:${dbpassword}@ds0${port}.mongolab.com:${port}/${database}`)//set uri")
-        .replace("//set uri","//set uri\nmongoose.connect( app.get('uri') ,(err)=> { if(err) return console.log(err); console.log('OK') })//open connection")
-        .replace("//open connection","//open connection\n\n//ListSchemas\n\nvar Cat = new Schema({\n\tname:{type:String,required:true,unique:false},\n\tage:{type:Number,required:true,unique:false}//last field\n})//end Cat")
-        .replace("//enc Cat","//enc Cat\n\napp.set('model',mongoose.model('"+res.dbuser.toUpperCase()+"',Cat))//end model")
+        .replace("//server http","//server http\n,  mongoose = require('mongoose')//mongodb driver\n,  Schema = mongoose.Schema//db schemas")
+        .replace("//db schemas","//db schemas\n,  database = '"+res.database+"'\n,  dbuser = '"+res.dbuser+"'\n,  dbpassword = '"+ res.dbpassword +"'\n,  port = '"+ res.port +"'//uri variables") 
+        .replace("//end setting","\n\t.set('uri', app.get('status log') === 'dev' ? `mongodb://localhost/${database}` : `mongodb://${dbuser}:${dbpassword}@ds0${port}.mongolab.com:${port}/${database}`)//set uri\n//end setting")
+        .replace("//end setting","\n\t.set('model',mongoose.model('"+res.dbuser.toUpperCase()+"',Cat))//end model\n//end setting")
+        .replace("//end setting","//end setting\n\nmongoose.connect( app.get('uri') ,(err)=> { if(err) return console.log(err); console.log('OK connected to '+app.get('uri')) })//open connection")
+        .replace("//uri variables","//uri variables\n\n//begin ListSchemas\n\nvar Cat = new Schema({\n\tname:{type:String,required:true,unique:false},\n\tage:{type:Number,required:true,unique:false}//last field\n})//end Cat\n\n//end ListSchemas")        
     )
 
   })
@@ -109,6 +109,7 @@ module.exports = yeoman.generators.Base.extend({
         var dest =  self.readFileAsString( self.templatePath('_express.js') );
         file = file.replace("//begin express","//begin express \n"+dest);//put the express block into file string
         self.write('./app.js', file );
+        
         if(prompt.set) {
           //set the setting folder option
           self.write('./app.js', file.replace("//begin setting","//begin setting \n require('./setting/express')(express,app)") );        
