@@ -38,6 +38,8 @@ In this version just are two block:
 * mongodb
 
 ### Express block
+![tree](./images/express-block.png "express block")
+
 For start follow next command:
 ```sh
 $ yo stack-lego:block express 
