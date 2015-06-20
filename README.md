@@ -17,7 +17,7 @@ $ npm i generator-stack-lego
 ### Start project 
 
 ```sh
-$ mkdir myProject && cd myProject && yo lego 
+$ mkdir myProject && cd myProject && yo stack-lego 
 ```
 
 this will prepare the environment of development with this files:
