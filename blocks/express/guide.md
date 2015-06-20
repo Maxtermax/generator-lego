@@ -3,7 +3,7 @@ Once plugged the block on the base generated with:
 ```sh
 	yo stack-lego:block express
 ```
-!(alt express block)[../../images/express-block-split.png]
+![alt express block](../../images/express-block-split.png)
 
 Then start, express have much functions to do routing, authorization, statics files etc.. this block split all this functions with a command for each one:
 
