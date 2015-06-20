@@ -4,7 +4,7 @@
 	/////////////////////////////
 
 	Buid you setting stack with this commands:
-		yo lego:express set 
+		yo stack-lego:express set 
 */
 
 app

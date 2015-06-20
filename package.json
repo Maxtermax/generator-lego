@@ -1,8 +1,9 @@
 {
-  "name": "generator-lego",
-  "version": "0.0.0",
+  "name": "generator-stack-lego",
+  "version": "1.0.1",
   "description": "Yeoman generator",
-  "license": "MIT",
+  "license": "GNU",
+  "preferGlobal": "true",
   "repository": "Maxtermax/generator-lego",
   "author": {
     "name": "Esneyder Amin",
@@ -16,8 +17,10 @@
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "lego",
+    "stack-lego"
   ],
+  "main": "./generators/index.js",
   "dependencies": {
     "chalk": "^1.0.0",
     "mkdirp": "^0.5.1",

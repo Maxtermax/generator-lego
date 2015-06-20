@@ -5,13 +5,6 @@ var yosay = require('yosay');
 var mkdirp = require('mkdirp');
 
 module.exports = yeoman.generators.Base.extend({
-  prompting: function () {
-    var done = this.async();
-    this.log(yosay(
-      'Welcome to the priceless ' + chalk.red('N') + ' generator!'
-    ));
-  },
-
   writing: {
     app: function () {
       mkdirp('./app',function(err) {
@@ -28,9 +21,6 @@ module.exports = yeoman.generators.Base.extend({
       mkdirp('./build/setting/app',function(err) {
         if(err)  console.log('Error creating build file please create for you self in ./build/setting/app')
       }) 
-
-
-
 
       this.fs.copy(
         this.templatePath('_package.json'),

@@ -1,11 +1,10 @@
-"use strict";
 /*
 	/////////////////////////////
 		EXPRESS CONFIGURATIONS
 	/////////////////////////////
 
 	Buid you setting stack with this commands:
-		yo lego:express set 
+		yo stack-lego:express set 
 */
 
 module.exports = function (express,app) {
