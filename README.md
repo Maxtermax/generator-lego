@@ -10,7 +10,7 @@ This is a concept to build web applications based on the idea that build applica
 ### Installation
 
 ```sh
-$ npm i -g yeoman
+$ npm i -g yo
 $ npm i -g nodemon
 $ npm i generator-stack-lego
 ```
