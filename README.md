@@ -13,7 +13,7 @@ $ npm install -g yeoman
 $ npm install -g nodemon
 $ npm install -g generator-lego
 ```
-### Star project 
+### Start project 
 
 ```sh
 $ mkdir myProject && cd myProject && yo lego 
