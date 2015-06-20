@@ -10,14 +10,14 @@ This is a concept to build web applications based on the idea that build applica
 ### Installation
 
 ```sh
-$ npm i -g yeoman
+$ npm i -g yo
 $ npm i -g nodemon
 $ npm i generator-stack-lego
 ```
 ### Start project 
 
 ```sh
-$ mkdir myProject && cd myProject && yo lego 
+$ mkdir myProject && cd myProject && yo stack-lego 
 ```
 
 this will prepare the environment of development with this files:
@@ -38,6 +38,8 @@ In this version just are two block:
 * mongodb
 
 ### Express block
+![tree](./images/express-block.png "express block")
+
 For start follow next command:
 ```sh
 $ yo stack-lego:block express 
