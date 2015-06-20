@@ -42,7 +42,8 @@ For start follow next command:
 ```sh
 $ yo stack-lego:block express 
 ```
-then that was install all basic middlewares that express need
+then that was install all basic middlewares that express need :
+
 ### [Cors](https://www.npmjs.com/package/cors) 
 
 For handler permissions and communications between servers.
@@ -53,6 +54,7 @@ For handler some http verbs and multipart data.
 ### [Method Override](https://www.npmjs.com/package/method-override) 
 For handler some http verbs.
 
+Please follow the guide to use this awesome block in this link [ stack-lego block express ](./blocks/express/guide.md)
 
 
 License
