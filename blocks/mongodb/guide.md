@@ -1,6 +1,4 @@
 # Mongodb guide 
-
-# Mongodb guide 
 Once plugged the block on the base generated with:
 ```sh
 	yo stack-lego:block mongodb
