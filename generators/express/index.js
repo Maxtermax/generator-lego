@@ -176,7 +176,7 @@ module.exports = yeoman.generators.Base.extend({
       var query = [{
         type:'list',
         name:'option',
-        message:'Barcos y putas con express.js',
+        message:'Choise one action',
         choices:[
           'views',
           'engine',

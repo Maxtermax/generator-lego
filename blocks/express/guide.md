@@ -13,6 +13,8 @@ This way display all set command that this block have
 ```sh
 	yo stack-lego:express set
 ```
+![alt set options](../../images/set-options.png)
+
 
 ### Setting url param
 Add param method with the name provide for the user in setting folder or the file app.js .
