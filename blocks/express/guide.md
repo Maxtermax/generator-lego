@@ -29,7 +29,7 @@ Add param method with the name provide for the user in setting folder or the fil
 Set one attribute called views in the app object to be used after.
 
 ```sh
-	yo stack-lego:express set views
+	yo stack-lego:express set view
 ```
 ![alt param set](../../images/view-set.png)
 
@@ -50,7 +50,9 @@ Set the folder where is you statics file according the path provider for the use
 ```sh
 	yo stack-lego:express set static
 ```
+![alt write path](../../images/write-path.png)
 
+![alt statics files ](../../images/statics-files.png)
 
 ### Routes 
 Generate one route with the method and path providers for the user and one file with the name of the path that contain the class to handler all this thing that route need,in case of user choice not get the setting > route then this will generate in the main file app.js   

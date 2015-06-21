@@ -18,6 +18,6 @@ module.exports = function (express,app) {
 		.param('name', (req,res,next,name)=> { req.name = name; next(); })//name param
  		.set('views',__dirname+'/../app/views')
  		.set('view engine','html' )//engine view
-
+ 		.use(express.static(__dirname+'/../../app/views'))//statics resources
  //end setting
 }
