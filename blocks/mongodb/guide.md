@@ -1,4 +1,4 @@
-# Mongodb guide 
+# Mongodb block guide 
 Once plugged the block on the base generated with:
 ```sh
 	yo stack-lego:block mongodb
@@ -27,15 +27,23 @@ Then generate this file with the data provided
 ![alt mongo schema](../../images/mongodb-schemas.png)
 For default this generate a schema for test called cat this block is specialized for play with the schemas with the next command: 
 
-### Create new schemas 
+### Create schema
 
 ```sh 
    yo stack-lego:mongodb schema new <someName>
 ```
 ![alt mongo schema](../../images/new-schema.png)
-![alt mongo schema](../../images/new-schema-doc.png)
+![alt mongo schema doc](../../images/new-schema-doc.png)
 This generate a new schema into the schemas file with the data provided for create the filed of the schema 
 
+### Add field to one exist schema
+
+```sh 
+  yo stack-lego:mongodb schema add <existing schema>
+```
+![alt add field](../../images/add-field.png)
+![alt add field doc](../../images/add-field-doc.png)
+This generate a new schema into the schemas file with the data provided for create the filed of the schema 
 
 
 
