@@ -24,10 +24,6 @@ this will prepare the environment of development with this files:
 
 ![tree](./images/init.png "Logo Title Text 1")
 
-### Package JSON
-![tree](./images/init-package.json.png "Tree of default packages")
-
-
 ### Blocks 
 This are pieces that fulfill a specific function eg in a web form system is required to handle routing, access token, cookies etc ...
 
