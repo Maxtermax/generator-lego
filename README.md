@@ -54,6 +54,16 @@ For handler some http verbs.
 
 Please follow the guide to use this awesome block in this link [ stack-lego block express ](./blocks/express/guide.md)
 
+### Mongodb block 
+![mongodb](./images/mongodb-block.png "mongodb block")
+
+For start follow next command:
+```sh
+$ yo stack-lego:block mongodb
+```
+then the generator will install one driver of mongodb called [mongoose](http://mongoosejs.com/) 
+Please follow the guide to use this awesome block in this link [ stack-lego block mongodb ](./blocks/mongodb/guide.md)
+
 
 License
 ----
