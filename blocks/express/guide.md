@@ -66,6 +66,8 @@ Generate one route with the method and path providers for the user and one file 
 Too can be used on existing routes, with diferent method
 ![alt new method](../../images/new-method.png)
  <br/>
+ <br />
+  
 ![alt new route](../../images/new-route.png)
 
 
