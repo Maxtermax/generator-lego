@@ -68,5 +68,5 @@ Please follow the guide to use this awesome block in this link [ stack-lego bloc
 License
 ----
 
-GNU
+[GNU](http://www.gnu.org/licenses/licenses.es.html)
 

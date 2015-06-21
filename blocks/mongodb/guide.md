@@ -58,24 +58,22 @@ This generate a new field into the existing schema with the data provided
 This will extend one schema from other with the data provider 
 
 
-### Static schema
+### Schema  static method 
 
 ```sh 
-  yo stack-lego:mongodb schema extend <schema to extend> <schema base>
+      yo stack-lego:mongodb schema statics <name of static method> <existing model> <existing schema>
 ```
 
-![alt add field](../../images/static-schema.png)
-![alt add field doc](../../images/static-schema-doc.png)
-This will extend one schema from other with the data provider 
+![alt static schema](../../images/static-schema.png)
+![alt static schema doc](../../images/static-schema-doc.png)
 
+This generate the basic structure for create [statics methods](http://mongoosejs.com/docs/guide.html) of mongoose for simplify you code
 
-
-
-
-
-
-
-
+### ¿How to run this? 
+So easy 
+```sh 
+   gulp
+```
 
 
 
