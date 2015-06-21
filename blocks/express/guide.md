@@ -28,9 +28,9 @@ Add param method with the name provide for the user in setting folder or the fil
 ### Setting views
 Set one attribute called views in the app object to be used after.
 
-``sh
+```sh
 	yo stack-lego:express set views
-``
+```
 ![alt param set](../../images/view-set.png)
 
 
@@ -40,6 +40,9 @@ Set one attribute called engine render in the app object to be used after.
 ```sh
 	yo stack-lego:express set engine
 ```
+![alt write engine](../../images/write-engine.png)
+![alt set engine](../../images/set-engine.png)
+
 
 ### Setting statics files
 Set the folder where is you statics file according the path provider for the user relative to the setting folder or the main file app.js
@@ -47,8 +50,6 @@ Set the folder where is you statics file according the path provider for the use
 ```sh
 	yo stack-lego:express set static
 ```
-![alt write engine](../../images/write-engine.png)
-![alt set engine](../../images/set-engine.png)
 
 
 ### Routes 
@@ -62,7 +63,7 @@ Generate one route with the method and path providers for the user and one file 
 
 Too can be used on existing routes, with diferent method
 ![alt new method](../../images/new-method.png)
-
+ <br/>
 ![alt new route](../../images/new-route.png)
 
 
