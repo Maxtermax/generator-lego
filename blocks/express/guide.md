@@ -75,16 +75,22 @@ Too can be used on existing routes, with diferent method
 ```
 Add the `Auth` attribute in the and of command and will generate one route with authenticacion 
 
-![alt auth route](../../images/auth.png)
+![alt auth ](../../images/auth.png)
 
-![alt auth route](../../images/set-auth.png)
+![alt set auth](../../images/set-jwt.png)
 
-![alt auth route](../../images/auth-index.png)
+![alt auth index](../../images/auth-index.png)
 
-![alt auth route](../../images/post-auth.png)
+### Test
 
+![alt post auth](../../images/post-auth.png)
 
+### ¿ How to run this ? 
+So easy 
 
+```sh
+	gulp
+```
 
 
 
