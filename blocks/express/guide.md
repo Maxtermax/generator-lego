@@ -7,7 +7,8 @@ Once plugged the block on the base generated with:
 
 Then start, express have much functions to do routing, authorization, statics files etc.. this block split all this functions with a command for each one:
 ### Warning 
-with this blocks exits two streams for build one app 
+ Please don't remove the comments, this block exits two streams for build one app
+
 ### 1- All on the main files 
  
 Just when the generator asking for something like if you wanna create one folder for something answer no allway, this way mean everything will be generated on the app.js file, this is only recommended if you do not know the modules used in this block, then a list of the modules: 
