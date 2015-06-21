@@ -7,7 +7,8 @@ module.exports = function (Schema) {
 		
 		var Cat = new Schema({
 			name:{type:String,required:true},
-			age:{type:Number,required:true}//last field 
+			age:{type:Number,required:true},
+			Dog:[Dog]//last field 
 		})//end Cat
 		
 	return Cat

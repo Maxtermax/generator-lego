@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')//mongodb driver
-,		Schemas = require("./schemas")(mongoose.Schema)//db schemas 
+,		Schemas = require("./schemas")(mongoose.Schema)//db schemas
+,   statics = require('./statics')(Schemas,'GITHUB_DB')//end statics schemas 
 
 module.exports = function(app) {
 	let database = 'github_db'
