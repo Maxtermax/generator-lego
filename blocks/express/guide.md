@@ -6,6 +6,21 @@ Once plugged the block on the base generated with:
 ![alt express block](../../images/express-block-split.png)
 
 Then start, express have much functions to do routing, authorization, statics files etc.. this block split all this functions with a command for each one:
+### Warning 
+with this blocks exits two streams for build one app 
+### 1- All on the main files 
+ 
+Just when the generator asking for something like if you wanna create one folder for something answer no allway, this way mean everything will be generated on the app.js file, this is only recommended if you do not know the modules used in this block, then a list of the modules: 
+ 
+ * [express jwt](https://github.com/auth0/node-jsonwebtoken)	
+ * [node jwt](https://www.npmjs.com/package/jsonwebtoken)	
+ * [cors](https://www.npmjs.com/package/cors)
+ * [morgan](https://www.npmjs.com/package/morgan)
+ * [multer](https://www.npmjs.com/package/multer)
+ * [method override](https://www.npmjs.com/package/method-override)
+
+### 2- Divide and conquer
+Just when the generator asking for something like if you wanna create one folder for something answer yes allway , this way the generator got to split the app in separate folders while generate all.
 
 ### Setting
 This way display all set command that this block have 
