@@ -9,6 +9,15 @@ var roots = function (app) {
 	//end route hello
 		
 
+
+	//begin route username
+	var username = require('./username/username.js')(app)
+	var instance_username = new username()
+	app
+		.route('/user/:name')
+		.get(instance_username['GET_Username'])
+	//end route username
+
 }//end routes 
 
 

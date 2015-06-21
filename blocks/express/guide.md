@@ -65,14 +65,23 @@ Generate one route with the method and path providers for the user and one file 
 
 Too can be used on existing routes, with diferent method
 ![alt new method](../../images/new-method.png)
- <br/>
- <br />
-  
+ 
 ![alt new route](../../images/new-route.png)
 
+### Routes with authentication
 
+```sh
+	yo stack-lego:express route <method in uppercase> <path> Auth
+```
+Add the `Auth` attribute in the and of command and will generate one route with authenticacion 
 
+![alt auth route](../../images/auth.png)
 
+![alt auth route](../../images/set-auth.png)
+
+![alt auth route](../../images/auth-index.png)
+
+![alt auth route](../../images/post-auth.png)
 
 
 

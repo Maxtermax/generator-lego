@@ -9,6 +9,8 @@
 */
 
 module.exports = function (express,app) {
+	var Auth = require('./auth')//auth handler
+	var auth = new Auth(app)//instance auth class
 	//begin setting
 	app
 		.use(require('cors')())//middlewares acess among server's https://www.npmjs.com/package/cors 
@@ -19,5 +21,6 @@ module.exports = function (express,app) {
  		.set('views',__dirname+'/../app/views')
  		.set('view engine','html' )//engine view
  		.use(express.static(__dirname+'/../../app/views'))//statics resources
- //end setting
+ 		.use( '/user/:name',auth.jwt,auth.verifyToken )
+	//end setting
 }
