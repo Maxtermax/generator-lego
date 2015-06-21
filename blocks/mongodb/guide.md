@@ -4,15 +4,6 @@ Once plugged the block on the base generated with:
 	yo stack-lego:block mongodb
 ```
 ![alt mongodb block](../../images/mongodb-block.png)
- 
-First this know the [uri](http://mongoosejs.com/docs/connections.html) to connect with the next questions, mongodb provide drivers for different platform this block work with [mongoose](http://mongoosejs.com/) one of most popular 
-
-![alt set uri](../../images/set-uri.png)
-Then generate this file with the data provided 
-
-![alt mongo connection](../../images/mongo-connect.png)
-
-![alt mongo schema](../../images/mongodb-schemas.png)
 
 ### Warning 
  Please don't remove the comments, this block exits two streams for build one app
@@ -24,6 +15,30 @@ Just when the generator asking for something like if you wanna create one folder
 
 ### 2- Divide and conquer
 Just when the generator asking for something like if you wanna create one folder for something answer yes allway , this way the generator got to split the app in separate folders while generate all.
+
+ 
+First this know the [uri](http://mongoosejs.com/docs/connections.html) to connect with the next questions, mongodb provide drivers for different platform this block work with [mongoose](http://mongoosejs.com/) one of most popular 
+
+![alt set uri](../../images/set-uri.png)
+Then generate this file with the data provided 
+
+![alt mongo connection](../../images/mongo-connect.png)
+
+![alt mongo schema](../../images/mongodb-schemas.png)
+For default this generate a schema for test called cat this block is specialized for play with the schemas with the next command: 
+
+### Create new schemas 
+
+```sh 
+   yo stack-lego:mongodb schema new <someName>
+```
+![alt mongo schema](../../images/new-schema.png)
+![alt mongo schema](../../images/new-schema-doc.png)
+This generate a new schema into the schemas file with the data provided for create the filed of the schema 
+
+
+
+
 
 
 
