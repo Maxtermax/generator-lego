@@ -43,13 +43,30 @@ This generate a new schema into the schemas file with the data provided for crea
 ```
 ![alt add field](../../images/add-field.png)
 ![alt add field doc](../../images/add-field-doc.png)
-This generate a new schema into the schemas file with the data provided for create the filed of the schema 
+This generate a new field into the existing schema with the data provided
 
 
 
+### Extends schemas
+
+```sh 
+  yo stack-lego:mongodb schema extend <schema to extend> <schema base>
+```
+
+![alt add field](../../images/extend-schema.png)
+![alt add field doc](../../images/extend-schema-doc.png)
+This will extend one schema from other with the data provider 
 
 
+### Static schema
 
+```sh 
+  yo stack-lego:mongodb schema extend <schema to extend> <schema base>
+```
+
+![alt add field](../../images/static-schema.png)
+![alt add field doc](../../images/static-schema-doc.png)
+This will extend one schema from other with the data provider 
 
 
 
