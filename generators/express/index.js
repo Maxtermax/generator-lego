@@ -153,7 +153,7 @@ module.exports = yeoman.generators.Base.extend({
 
     if( self.argv === 'set' && self.option === 'engine' ) {
       self.pass = true
-      console.log('Setting the engine resources')
+      console.log('Setting the engine render')
       engineHandler(self);
     } else if( self.argv === 'set' && self.option === 'param' ) {
       self.pass = true
