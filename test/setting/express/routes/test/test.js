@@ -4,11 +4,11 @@ module.exports = function(app) {
 			//begin route
 				app
 					.route(path)
-					.get(this['Test::GET'])
+					.get(this['Hello::GET'])
 			//end route
 		}//end router constructor 
 
-		'Test::GET'(req,res) {
+		'Hello::GET'(req,res) {
 			res.send('Allo!!')
 		}//end test GET
 
