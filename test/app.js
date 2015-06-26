@@ -8,7 +8,7 @@
 		yo stack-lego:express set param
 		yo stack-lego:express set static 
 		yo stack-lego:express set engine 
-		yo stack-lego:express set views
+		yo stack-lego:express set view
 		yo stack-lego:express route GET /hello
 		yo stack-lego:express route GET /hello Auth
 		
@@ -34,10 +34,6 @@ app
 //begin setting 
  require('./setting/express')(express,app)
 //end setting
-
-//begin model
-require('./setting/model')(app)
-//end model
 
 //begin routes
 require('./setting/express/routes')(app)

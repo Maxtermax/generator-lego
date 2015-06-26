@@ -3,7 +3,6 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var mkdirp = require('mkdirp');
-
 module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function () {

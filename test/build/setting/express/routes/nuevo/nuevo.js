@@ -6,39 +6,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 module.exports = function (app) {
 	return (function () {
-		function ROUTE_HELLO(path) {
-			_classCallCheck(this, ROUTE_HELLO);
+		function ROUTE_NUEVO(path) {
+			_classCallCheck(this, ROUTE_NUEVO);
 
 			//begin route
-			app.route(path).get(this['Hello::GET']).put(this['Hello::PUT']).post(this['Hello::POST']);
+			app.route(path).get(this['Nuevo::GET']);
 		}
 
-		_createClass(ROUTE_HELLO, [{
-			key: 'Hello::POST',
+		_createClass(ROUTE_NUEVO, [{
+			key: 'Nuevo::GET',
 			//end router constructor
 
-			value: function HelloPOST(req, res) {
-				res.send('Allo!! wellcome to /hello for method POST');
-			}
-		}, {
-			key: 'Hello::PUT',
-			//end hello POST
-
-			value: function HelloPUT(req, res) {
-				res.send('Allo!! wellcome to /hello for method PUT');
-			}
-		}, {
-			key: 'Hello::GET',
-			//end hello PUT
-
-			value: function HelloGET(req, res) {
+			value: function NuevoGET(req, res) {
 				res.send('Allo!!');
-			} //end hello GET
+			} //end nuevo GET
 
 		}]);
 
-		return ROUTE_HELLO;
+		return ROUTE_NUEVO;
 	})();
 } //end exports 	
 ; //end route
-//end class Route_hello
+//end class Route_nuevo

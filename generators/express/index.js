@@ -126,10 +126,11 @@ var createFolderRoot = function(self,name) {
     self.fs.copyTpl(
       self.templatePath('/controller/_ctrl.js'),
       self.destinationPath(path+"/"+name+".js"),{
-        title:name.toLocaleUpperCase(),
-        nameCap:name.capitalize(),
-        name:name,
-        method:self.option
+        title   : name.toLocaleUpperCase(),
+        nameCap : name.capitalize(),
+        name    : name,
+        method  : self.option,
+        methodLower : self.option.toLowerCase()
       })
 
   })//end create  
@@ -235,6 +236,7 @@ module.exports = yeoman.generators.Base.extend({
               var search = content.search("//auth handler") 
               if(  !(search != -1) ) content = content.replace('//begin setting',"var Auth = require('./auth')//auth handler\n\tvar auth = new Auth(app)//instance auth class\n\t//begin setting" )
               self.write('./setting/express/index.js',content) 
+ 
               
             } else {
               self.prompt(authQuery,function(res) {
@@ -260,15 +262,9 @@ module.exports = yeoman.generators.Base.extend({
                     self.write('./setting/express/index.js',content) 
                   }) 
 
-                } else {
-                  /*
-                  console.log('ENTROO')
-                  var app = self.readFileAsString('./app.js')
-                  self.write( "./app.js", app.replace( "//begin setting","DDDDDDDDDD\n//begin setting"))
-                  */
-                  //create in app.js  
-                }      
-                })//end if file does not exist
+                } 
+              })//end if file  not exist
+
               } 
             })//end auth folder exist ?
           }//end auth option
@@ -290,17 +286,29 @@ module.exports = yeoman.generators.Base.extend({
                 //found method of just update at the class with the method
                 try {
                   var update = self.readFileAsString("./setting/express/routes/"+name+"/"+name+".js");
-                  self.write( "./setting/express/routes/"+name+"/"+name+".js", update.replace("//end constructor","//end constructor\n\n\t\t"+self.option+"_"+name.capitalize()+"(req,res){\n"+"\t\t\tres.send( 'Allo!! wellcome to "+ self.path +" for method "+ self.option +"')\n\t\t}//end "+name+" "+self.option+"\n") ) 
+                  self.write( "./setting/express/routes/"+name+"/"+name+".js",
+                     update.replace("end router constructor","end router constructor\n\n\t\t'"+name.capitalize()+"::"+self.option+"'(req,res){\n"+"\t\t\tres.send( 'Allo!! wellcome to "+ self.path +" for method "+ self.option +"')\n\t\t}//end "+name+" "+self.option+"\n") 
+                     .replace("//end route","\t\t."+self.option.toLowerCase()+"(this['"+name.capitalize()+"::"+self.option+"'])\n\t\t\t//end route") 
+                     ) 
+                  var name = self.path.replace("/","").replace(/\//g,"_").replace(":","")
+                  var rooter = self.readFileAsString("./setting/express/routes/index.js")
+                  if( rooter.search("//class for "+name) === -1 ) {
+                    self.write("./setting/express/routes/index.js", 
+                      file.replace("//class for yo","\n, "+name+" = require('"+'./'+name+'/'+name+".js')(app)//class for "+name )  
+                    ) 
 
-                var rooter = self.readFileAsString("./setting/express/routes/index.js")
-                self.write("./setting/express/routes/index.js", file.replace("//end route "+name,"\t."+self.option.toLowerCase()+"(instance_"+name+"['"+self.option+"_"+name.capitalize()+"'])\n\t//end route "+name+"\n") )   
+                  }
+
                 }catch(err) {
                    console.log('Ooops please change the route name') 
                 }              
 
               } else {
                 createFolderRoot(self,name)
-                self.write("./setting/express/routes/index.js", file.replace("}//end routes","\n\t//begin route "+name+"\n\tvar "+name+" = require('./"+name+"/"+name+".js')(app)\n\tvar instance_"+name+" = new "+name+"()\n\tapp\n\t\t.route('"+self.path+"')\n\t\t."+self.option.toLowerCase()+"(instance_"+name+"['"+self.option+"_"+name.capitalize()+"'])\n\t//end route "+name+"\n\n}//end routes" ) )   
+                self.write("./setting/express/routes/index.js", 
+                  file.replace("//end routes required",", "+name+" = require('./"+name+"/"+name+".js')(app)//class for "+name+"\n//end routes required")
+                  .replace("//last instance",",\n\t\tinstance_"+name+" : new "+name+"('"+self.path+"')//last instance")
+                )   
                 
               }             
               return;

@@ -74,9 +74,3 @@ So easy
 ```sh 
    gulp
 ```
-
-
-
-
-
-

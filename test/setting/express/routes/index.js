@@ -1,58 +1,11 @@
-var roots = function (app) {
-	//begin route hello		
-	var hello = require('./hello/hello.js')(app)
-	var instance_hello = new hello()
-	app
-		.route('/hello')
-		.get(instance_hello['GET_Hello']) 
-		.post(instance_hello['POST_Hello'])
-	//end route hello
-		
 
+module.exports = function (app) {
+	//begin routes required
+	var test = require('./test/test.js')(app)//class for test
+	//end routes required
 
-	//begin route username
-	var username = require('./username/username.js')(app)
-	var instance_username = new username()
-	app
-		.route('/user/:name')
-		.get(instance_username['GET_Username'])
-	//end route username
+	return {
+		instance_test : new test('/test')//last instance 
+	}//return instances of routes 
 
 }//end routes 
-
-
-module.exports = roots
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

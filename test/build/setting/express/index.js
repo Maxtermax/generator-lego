@@ -1,12 +1,13 @@
-'use strict';
 /*
 	/////////////////////////////
 		EXPRESS CONFIGURATIONS
 	/////////////////////////////
 
 	Buid you setting stack with this commands:
-		yo lego:express set 
+		yo stack-lego:express set 
 */
+
+'use strict';
 
 module.exports = function (express, app) {
 	var Auth = require('./auth'); //auth handler
@@ -16,11 +17,6 @@ module.exports = function (express, app) {
 	.use(require('morgan')(app.get('status log'))) //middleware debug https://www.npmjs.com/package/morgan
 	.use(require('method-override')()) //middleware put and delete request https://www.npmjs.com/package/method-override
 	.use(require('multer')()) //middleware parse files and post request https://www.npmjs.com/package/multer
-	.param('name', function (req, res, next, name) {
-		req.name = name;next();
-	}) //name param
-	.set('views', __dirname + '/../app/views').set('view engine', 'html') //engine view
-	.use(express['static'](__dirname + '/../../app/views')) //statics resources
-	.use('/user/:name', auth.jwt, auth.verifyToken);
+	.use('/n', auth.jwt, auth.verifyToken).use('/nd', auth.jwt, auth.verifyToken).use('/nw', auth.jwt, auth.verifyToken).use('/test', auth.jwt, auth.verifyToken).use('/test', auth.jwt, auth.verifyToken);
 };
 //end setting

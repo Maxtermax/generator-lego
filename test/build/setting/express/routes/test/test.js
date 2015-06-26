@@ -6,21 +6,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 module.exports = function (app) {
 	return (function () {
-		function ROUTE_USERNAME() {
-			_classCallCheck(this, ROUTE_USERNAME);
+		function ROUTE_TEST(path) {
+			_classCallCheck(this, ROUTE_TEST);
+
+			//begin route
+			app.route(path).get(this['Test::GET']);
 		}
 
-		_createClass(ROUTE_USERNAME, [{
-			key: 'GET_Username',
-			//end constructor
+		_createClass(ROUTE_TEST, [{
+			key: 'Test::GET',
+			//end router constructor
 
-			value: function GET_Username(req, res) {
+			value: function TestGET(req, res) {
 				res.send('Allo!!');
-			} //end username GET
+			} //end test GET
 
 		}]);
 
-		return ROUTE_USERNAME;
+		return ROUTE_TEST;
 	})();
 } //end exports 	
-; //end class Route_username
+; //end route
+//end class Route_test
